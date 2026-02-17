@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Photo Album</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="album.css">
+</head>
+<body>
+
+<h1>My Photo Album</h1>
+
+<div class="gallery">
+    <img src="https://picsum.photos/id/1015/600/400" data-index="0">
+    <img src="https://picsum.photos/id/1016/600/400" data-index="1">
+    <img src="https://picsum.photos/id/1025/600/400" data-index="2">
+    <img src="https://picsum.photos/id/1035/600/400" data-index="3">
+    <img src="https://picsum.photos/id/1041/600/400" data-index="4">
+    <img src="https://picsum.photos/id/1050/600/400" data-index="5">
+</div>
+
+<div class="lightbox" id="lightbox">
+    <span class="close" id="closeBtn">&times;</span>
+    <img id="lightbox-img">
+    <div class="controls">
+        <button id="prevBtn">⬅ Prev</button>
+        <button id="nextBtn">Next ➡</button>
+    </div>
+</div>
+
+<script src="pa.js"></script>
+</body>
+</html>
