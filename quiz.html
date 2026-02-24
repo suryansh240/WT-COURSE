@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .quiz-box {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-box">
+    <h2 id="question">Question will appear here</h2>
+
+    <div>
+        <input type="radio" name="answer" value="0"> <span id="option0"></span><br><br>
+        <input type="radio" name="answer" value="1"> <span id="option1"></span><br><br>
+        <input type="radio" name="answer" value="2"> <span id="option2"></span><br><br>
+        <input type="radio" name="answer" value="3"> <span id="option3"></span><br><br>
+    </div>
+
+    <button onclick="nextQuestion()">Next</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+    const quizData = [
+        {
+            question: "Which Country has won the most world cup",
+            options: ["Argentina", "Brazil", "Italy", "Germany"],
+            correct: 1
+        },
+        {
+            question: "Whose Prime is More peak?",
+            options: ["Zidane", "Iniesta", "Kroos", "Ozil"],
+            correct: 3
+        },
+        {
+            question: "Which Country won the world cup in 1982?",
+            options: [
+                "Italy",
+                "West Germany",
+                "USSR",
+                "Yugoslavia"
+            ],
+            correct: 0
+        },
+
+        {
+            question: "Who is the GOAT",
+            options: [
+                "Pele",
+                "Ronaldo",
+                "Messi",
+                "Maradona"
+            ],
+            correct: 2
+        },
+
+
+        {
+            question: "Greatest Freekkick Taker?",
+            options: [
+                "Beckham",
+                "Messi",
+                "Pele",
+                "Juninho"
+            ],
+            correct: 3
+        },
+
+        {
+            question: "Greatest Football Team?",
+            options: [
+                "Barcelona 2009",
+                "Real Madrid 2017",
+                "Sacchi Milan",
+                "Uruguay (1924-1950)"
+            ],
+            correct: 0
+        },
+        
+
+        {
+            question: "Best Winger Currently",
+            options: [
+                "Yamal",
+                "Olise",
+                "Kvara",
+                "Vini Jr"
+            ],
+            correct: 1
+        },
+     
+        {
+            question: "Best Defender of all time ",
+            options: [
+                "Baresi",
+                "Maldini",
+                "Cannavaro",
+                "Beckenbauer"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "Greatest Striker of all time",
+            options: [
+                "Gerd Muller",
+                "Marco Van Basten",
+                "O Fenomeno",
+                "Romario"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "Best Football Slander",
+            options: [
+                "Saddam Huijsen",
+                "Penaldo",
+                "Lil Uzi Wirtz",
+                "Mikel Artentanyu"
+            ],
+            correct: 3
+        },
+
+    ];
+
+     let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuestion() {
+        const q = quizData[currentQuestion];
+        document.getElementById("question").innerText = q.question;
+        document.getElementById("option0").innerText = q.options[0];
+        document.getElementById("option1").innerText = q.options[1];
+        document.getElementById("option2").innerText = q.options[2];
+        document.getElementById("option3").innerText = q.options[3];
+
+        // Uncheck previous selection
+        const answers = document.getElementsByName("answer");
+        answers.forEach(answer => answer.checked = false);
+    }
+
+    function nextQuestion() {
+        const answers = document.getElementsByName("answer");
+        let selected = -1;
+
+        answers.forEach(answer => {
+            if (answer.checked) {
+                selected = parseInt(answer.value);
+            }
+        });
+
+        if (selected === -1) {
+            alert("Please select an answer!");
+            return;
+        }
+
+        if (selected === quizData[currentQuestion].correct) {
+            score++;
+        }
+
+        currentQuestion++;
+
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            document.querySelector(".quiz-box").innerHTML =
+                "<h2>Quiz Completed!</h2>" +
+                "<h3>Your Score: " + score + " / " + quizData.length + "</h3>";
+        }
+    }
+
+    loadQuestion();
+   
+</script>
+
+</body>
+</html>
